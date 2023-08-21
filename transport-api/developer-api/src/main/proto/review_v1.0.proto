@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package org.example.bpmn.developer.review.api;
+
+service Review {
+
+  rpc sendToCodeReview (SendToReviewRequest) returns (SendToReviewResponse) {}
+
+}
+
+enum ReviewStatus {
+    APPROVE = 0;
+    NEED_WORK = 1;
+}
+
+message SendToReviewRequest {
+
+    string rq_uid = 1;
+    string oper_uid = 2;
+
+    // payload
+    int32 task_number = 3;
+    string program_code = 4;
+
+}
+
+message SendToReviewResponse {
+
+    string rq_uid = 1;
+    string oper_uid = 2;
+
+    // payload
+    ReviewStatus status = 3;
+
+}

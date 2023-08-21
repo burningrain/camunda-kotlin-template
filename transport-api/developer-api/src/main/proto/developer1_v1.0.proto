@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+package org.example.bpmn.developer.developer1.api;
+
+service Developer1 {
+
+  rpc sendTask (TaskRequest) returns (TaskResponse) {}
+
+}
+
+enum Status {
+    OK = 0;
+    UNKNOWN_ERROR = 1;
+}
+
+message TaskRequest {
+
+  string rq_uid = 1;
+  string oper_uid = 2;
+  // payload
+  int32 task_number = 3;
+  google.protobuf.StringValue comment = 4;
+
+}
+
+message TaskResponse {
+
+    string rq_uid = 1;
+    string oper_uid = 2;
+    // payload
+    Status status = 3;
+    google.protobuf.StringValue comment = 4;
+
+}

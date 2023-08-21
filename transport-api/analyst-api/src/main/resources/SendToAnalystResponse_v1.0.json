@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bpmn.example.org/SendToAnalystRequest_v1.0.json",
+  "title": "SendToAnalystResponse",
+  "description": "ответ аналитика на разработку/доработку аналитики",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "уникальный идентификатор запроса"
+    },
+    "operationId": {
+      "type": "string",
+      "description": "уникальный идентификатор операции/процесса"
+    },
+    "taskNumber": {
+      "description": "Номер задачи в JIRA",
+      "type": "integer"
+    },
+    "status": {
+      "description": "Статус ответа аналитики",
+      "type": "string",
+      "enum": ["NORMAL", "TO_DEV", "REWRITE_DOCS"]
+    },
+    "answers": {
+      "description": "Список ответов на вопросы к аналитике",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "requestId",
+    "taskNumber"
+  ]
+}

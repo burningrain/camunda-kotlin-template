@@ -1,0 +1,27 @@
+@namespace("org.example.bpmn.developer2.avro.api")
+protocol Developer2 {
+
+	TaskResponse sendTask(TaskRequest request);
+
+	enum Status {
+		OK,
+		UNKNOWN_ERROR
+	}
+
+	record TaskRequest {
+		string rqUid;
+		string operUid;
+		// payload
+		int taskNumber;
+		union { null, string } comment;
+	}
+
+	record TaskResponse {
+		string rqUid;
+		string operUid;
+		// payload
+		Status status;
+		union { null, string } comment;
+	}
+
+}
